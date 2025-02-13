@@ -10,7 +10,7 @@ class App {
   private scene: THREE.Scene;
   private camera: THREE.PerspectiveCamera;
   private renderer: THREE.WebGLRenderer;
-  private geometry: THREE.BoxGeometry;
+  private geometry: THREE.TorusGeometry;
   //private geometry: THREE.SphereGeometry;
   private materials: THREE.RawShaderMaterial[];
   private mesh: THREE.Mesh;
@@ -47,7 +47,7 @@ class App {
     const resolution = new THREE.Vector2(window.innerWidth, window.innerHeight);
 
     // Geometría: Esfera para visualizar mejor los efectos
-    this.geometry = new THREE.BoxGeometry(4, 4, 4);
+    this.geometry = new THREE.TorusGeometry(3,1,32,64);
     //this.geometry = new THREE.SphereGeometry(3, 32, 32);
 
     // Material 1: Shader de ondas (vertex + fragment)
@@ -83,8 +83,8 @@ class App {
         u_resolution: { value: resolution },
         u_inflateAmount: { value: 0.2 }, // Controla el nivel de inflado
         u_lightDirection: { value: new THREE.Vector3(1, 1, 1).normalize() },
-        u_lightColor: { value: new THREE.Color(0xffffff) },
-        u_objectColor: { value: new THREE.Color(0xff00ff) }, // Rojo para diferenciar
+        u_lightColor: { value: new THREE.Color(0x000000) },
+        u_objectColor: { value: new THREE.Color(0xffffff) }, // Rojo para diferenciar
         cameraPosition: { value: this.camera.position },
       },
       glslVersion: THREE.GLSL3,
